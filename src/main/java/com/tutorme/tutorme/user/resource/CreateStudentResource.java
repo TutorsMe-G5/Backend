@@ -43,6 +43,11 @@ public class CreateStudentResource {
     @Size(min = 2, max = 50)
     private String mail;
 
+    @NotNull
+    @Size(min = 2, max = 1000)
+    @Column(name="photo", nullable = false)
+    private String photo;
+
     @Past
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)

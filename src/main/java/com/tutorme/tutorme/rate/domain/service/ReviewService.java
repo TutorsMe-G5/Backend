@@ -9,6 +9,7 @@ public interface ReviewService {
     Review update(Review review);
     List<Review> fetchAll();
     List<Review> fetchByRate(int rate);
+    List<Review> fetchByTeacherId(Integer teacherId);
     Review fetchById (Integer id);
     boolean deleteById(Integer id);
 }

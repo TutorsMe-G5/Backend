@@ -15,6 +15,7 @@ public class TeacherResource {
     private String lastName;
     private String password;
     private String mail;
+    private String photo;
     private boolean notifications;
     //private List<Review> reviews;
 }

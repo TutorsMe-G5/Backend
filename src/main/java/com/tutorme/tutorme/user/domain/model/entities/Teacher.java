@@ -46,6 +46,11 @@ public class Teacher {
     private String mail;
 
     @NotNull
+    @Size(min = 2, max = 1000)
+    @Column(name="photo", nullable = false)
+    private String photo;
+
+    @NotNull
     @Column(name="notification", length = 50, nullable = false)//Snake para columnas y tablas en general
     private boolean notifications;
 

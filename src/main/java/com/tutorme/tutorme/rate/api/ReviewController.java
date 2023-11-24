@@ -29,6 +29,7 @@ public class ReviewController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     public ResponseEntity<List<Review>> fetchAll(){
         return ResponseEntity.ok(reviewService.fetchAll());
     }
@@ -36,6 +37,10 @@ public class ReviewController {
     @GetMapping("rate/{rate}")
     public ResponseEntity<List<Review>> fetchByRate(@PathVariable("rate")int rate){
         return ResponseEntity.ok(reviewService.fetchByRate(rate));
+    }
+    @GetMapping("teacher/{teacherId}")
+    public ResponseEntity<List<Review>> fetchByTeacherId(@PathVariable("teacherId")Integer teacherId){
+        return ResponseEntity.ok(reviewService.fetchByTeacherId(teacherId));
     }
 
 

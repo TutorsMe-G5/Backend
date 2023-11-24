@@ -48,6 +48,11 @@ public class Student {
     @Column(name="mail", length = 50, nullable = false)//Snake para columnas y tablas en general
     private String mail;
 
+    @NotNull
+    @Size(min = 2, max = 1000)
+    @Column(name="photo", nullable = false)
+    private String photo;
+
     @Past
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="birth_date")

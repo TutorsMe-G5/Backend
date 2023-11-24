@@ -3,6 +3,7 @@ package com.tutorme.tutorme.user.resource;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tutorme.tutorme.rate.domain.model.entities.Review;
+import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -37,6 +38,11 @@ public class CreateTeacherResource {
     @NotBlank
     @Size(min = 2, max = 50)
     private String mail;
+
+    @NotNull
+    @Size(min = 2, max = 1000)
+    @Column(name="photo", nullable = false)
+    private String photo;
 
     @NotNull
     private boolean notifications;

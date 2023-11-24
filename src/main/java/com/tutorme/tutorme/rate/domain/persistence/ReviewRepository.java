@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
     List<Review> findByRate(int rate);
+    List<Review> findByTeacherId(Integer teacherId);
 }

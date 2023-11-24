@@ -50,6 +50,11 @@ public class ReviewServiceImplement implements ReviewService {
     }
 
     @Override
+    public List<Review> fetchByTeacherId(Integer teacherId) {
+        return reviewRepository.findByTeacherId(teacherId);
+    }
+
+    @Override
     public Review fetchById(Integer id) {
         if (reviewRepository.existsById(id)){
             return reviewRepository.findById(id).get();
