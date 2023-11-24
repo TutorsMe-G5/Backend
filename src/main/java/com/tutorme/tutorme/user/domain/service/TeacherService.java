@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TeacherService {
     Teacher save(Teacher teacher);
-    Teacher update(Teacher teacher);
+    Teacher update(Integer id, Teacher teacher);
     List<Teacher> fetchAll();
 
     Teacher findByName(String name);

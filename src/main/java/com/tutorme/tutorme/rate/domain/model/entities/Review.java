@@ -46,4 +46,12 @@ public class Review {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private Student student;
+
+    /*
+    @JsonIgnore
+    @Size(min = 0, max = 1000)
+    @Column(name="student_photo", nullable = false)
+    private String stuPhoto = "";*/
+
+
 }

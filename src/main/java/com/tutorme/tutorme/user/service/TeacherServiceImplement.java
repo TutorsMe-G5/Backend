@@ -34,8 +34,23 @@ public class TeacherServiceImplement implements TeacherService {
 
     @Transactional
     @Override
-    public Teacher update(Teacher teacher) {
-        return null;
+    public Teacher update(Integer id, Teacher teacher) {
+        // Validar el objeto Teacher antes de intentar actualizar
+        Set<ConstraintViolation<Teacher>> violations = validator.validate(teacher);
+        if (violations.isEmpty()) {
+            // Comprobar si el Teacher ya existe en la base de datos
+            if (id == null || !teacherRepository.existsById(id)) {
+                // Lanzar una excepción o manejar el caso de actualización de un objeto inexistente
+                throw new FetchIdNotFoundException("Teacher", id);
+            }
+
+            // Realizar la actualización
+            teacher.setId(id);
+            return teacherRepository.save(teacher);
+        } else {
+            // Si hay violaciones de restricciones, lanzar una excepción de validación
+            throw new ResourceValidationException("Teacher", violations);
+        }
     }
 
     @Transactional(readOnly = true)

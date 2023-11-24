@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ReviewMapper implements Serializable {
     @Autowired
@@ -21,4 +22,5 @@ public class ReviewMapper implements Serializable {
     public ReviewResource toResource(Review review){
         return this.mapper.map(review, ReviewResource.class);
     }
+
 }

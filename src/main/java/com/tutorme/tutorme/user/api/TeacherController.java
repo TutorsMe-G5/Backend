@@ -55,6 +55,13 @@ public class TeacherController {
                 HttpStatus.CREATED);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<TeacherResource> update(@PathVariable("id") Integer id, CreateTeacherResource resource){
+        return new ResponseEntity<>(
+                teacherMapper.toResource(teacherService.update(id, teacherMapper.toEntity(resource))),
+                HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<Teacher>> fetchAll(){
         return ResponseEntity.ok(teacherService.fetchAll());

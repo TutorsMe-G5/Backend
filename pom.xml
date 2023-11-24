@@ -12,7 +12,7 @@
 	<artifactId>tutor-me</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tutor-me</name>
-	<description>Project for TutorsMe</description>
+	<description>Project for TutorsMe Teachers!</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>

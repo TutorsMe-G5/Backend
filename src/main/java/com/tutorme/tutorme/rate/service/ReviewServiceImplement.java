@@ -5,6 +5,10 @@ import com.tutorme.tutorme.rate.domain.persistence.ReviewRepository;
 import com.tutorme.tutorme.rate.domain.service.ReviewService;
 import com.tutorme.tutorme.shared.exeption.FetchIdNotFoundException;
 import com.tutorme.tutorme.shared.exeption.ResourceValidationException;
+import com.tutorme.tutorme.user.domain.model.entities.Student;
+import com.tutorme.tutorme.user.domain.model.entities.Teacher;
+import com.tutorme.tutorme.user.domain.persistence.StudentRepository;
+import com.tutorme.tutorme.user.domain.persistence.TeacherRepository;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import lombok.AllArgsConstructor;
@@ -19,16 +23,25 @@ import java.util.Set;
 public class ReviewServiceImplement implements ReviewService {
 
     private final ReviewRepository reviewRepository;
+    private final TeacherRepository teacherRepository;
+    private final StudentRepository studentRepository;
     private Validator validator;
 
     @Transactional
     @Override
-    public Review save(Review review) {
-        Set<ConstraintViolation<Review>> violations = validator.validate(review);
-        if (violations.isEmpty()){
-            return reviewRepository.save(review);
+    public Review save(Review review, Integer tId, Integer sId) {
+        if(teacherRepository.existsById(tId)){
+            if (studentRepository.existsById(sId)){
+                Set<ConstraintViolation<Review>> violations = validator.validate(review);
+                if (violations.isEmpty()){
+                    return reviewRepository.save(review);
+                }
+                throw new ResourceValidationException("Review", violations);
+            }
+            throw new FetchIdNotFoundException("Student", sId);
         }
-        throw new ResourceValidationException("Review", violations);
+        throw new FetchIdNotFoundException("Teacher", tId);
+
     }
 
     @Transactional

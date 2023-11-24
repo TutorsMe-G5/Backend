@@ -1,6 +1,7 @@
 package com.tutorme.tutorme.rate.resource;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.tutorme.tutorme.user.domain.model.entities.Student;
 import com.tutorme.tutorme.user.domain.model.entities.Teacher;
@@ -39,4 +40,9 @@ public class CreateReviewResource {
     @JsonBackReference("reviewStudentReference")
     @ManyToOne(fetch = FetchType.LAZY)
     private Student student;
+
+    /*@NotNull
+    @JsonIgnore
+    @Size(min = 0, max = 1000)
+    private String stuPhoto;*/
 }

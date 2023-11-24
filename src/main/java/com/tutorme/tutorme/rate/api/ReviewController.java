@@ -25,13 +25,14 @@ public class ReviewController {
     @PostMapping
     public ResponseEntity<ReviewResource> save(@RequestBody CreateReviewResource resource){
         return new ResponseEntity<>(
-                reviewMapper.toResource(reviewService.save(reviewMapper.toEntity(resource))), HttpStatus.CREATED);
+                reviewMapper.toResource(reviewService.save(reviewMapper.toEntity(resource), resource.getTeacher().getId(), resource.getStudent().getId())), HttpStatus.CREATED);
     }
 
     @GetMapping
     @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     public ResponseEntity<List<Review>> fetchAll(){
         return ResponseEntity.ok(reviewService.fetchAll());
+
     }
 
     @GetMapping("rate/{rate}")
