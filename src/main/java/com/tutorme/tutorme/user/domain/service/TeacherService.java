@@ -11,6 +11,7 @@ public interface TeacherService {
     List<Teacher> fetchAll();
 
     Teacher findByName(String name);
+    Teacher findByMailAndPassword(String mail, String password);
 
     Teacher fetchById(Integer id);
     boolean deleteById(Integer id);

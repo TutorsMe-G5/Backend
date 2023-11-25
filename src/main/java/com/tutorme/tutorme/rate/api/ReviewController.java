@@ -35,16 +35,20 @@ public class ReviewController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @GetMapping("rate/{rate}")
     public ResponseEntity<List<Review>> fetchByRate(@PathVariable("rate")int rate){
         return ResponseEntity.ok(reviewService.fetchByRate(rate));
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @GetMapping("teacher/{teacherId}")
     public ResponseEntity<List<Review>> fetchByTeacherId(@PathVariable("teacherId")Integer teacherId){
         return ResponseEntity.ok(reviewService.fetchByTeacherId(teacherId));
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @GetMapping("{id}")
     public ResponseEntity<ReviewResource> fetchbyId(@PathVariable("id") Integer id){
         return new ResponseEntity<>(
@@ -52,6 +56,7 @@ public class ReviewController {
                 HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteById(@PathVariable("id") Integer id){
         if(reviewService.deleteById(id)){

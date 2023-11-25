@@ -27,6 +27,7 @@ public class TeacherController {
     private final TeacherService teacherService;
     private final TeacherMapper teacherMapper;
 
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @Operation(summary = "Add a new teacher account",
             description = "Add a new teacher",
             operationId = "addTeacher",
@@ -55,6 +56,7 @@ public class TeacherController {
                 HttpStatus.CREATED);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @PutMapping("{id}")
     public ResponseEntity<TeacherResource> update(@PathVariable("id") Integer id, CreateTeacherResource resource){
         return new ResponseEntity<>(
@@ -62,11 +64,13 @@ public class TeacherController {
                 HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @GetMapping
     public ResponseEntity<List<Teacher>> fetchAll(){
         return ResponseEntity.ok(teacherService.fetchAll());
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @GetMapping("{id}")
     public ResponseEntity<TeacherResource> fetchById(@PathVariable("id") Integer id){
         return new ResponseEntity<>(
@@ -74,12 +78,22 @@ public class TeacherController {
                 HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
+    @GetMapping("auth/{mail}/{password}")
+    public ResponseEntity<TeacherResource> fetchByMailAndPassword(@PathVariable("mail") String mail, @PathVariable("password") String password){
+        return new ResponseEntity<>(
+                teacherMapper.toResource(teacherService.findByMailAndPassword(mail, password)),
+                HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @GetMapping("name/{first_name}")
     public ResponseEntity<TeacherResource> findByName(@PathVariable("first_name") String name){
         return ResponseEntity.ok(
                 teacherMapper.toResource(teacherService.findByName(name)));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")//enable request from this origin
     @DeleteMapping("{id}")
     public ResponseEntity<?> deleteById(@PathVariable("id") Integer id){
         if (teacherService.deleteById(id)){

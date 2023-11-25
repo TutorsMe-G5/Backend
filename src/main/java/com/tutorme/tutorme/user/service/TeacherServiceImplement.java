@@ -68,6 +68,14 @@ public class TeacherServiceImplement implements TeacherService {
         throw new FetchNotFoundException("Teacher", "name", name);
     }
 
+    @Override
+    public Teacher findByMailAndPassword(String mail, String password) {
+        if (teacherRepository.existsByMailAndPassword(mail, password)){
+            return teacherRepository.findByMailAndPassword(mail, password).orElseThrow();
+        }
+        throw new FetchNotFoundException("Teacher", "mail or password", mail+" "+password);
+    }
+
     @Transactional(readOnly = true)
     @Override
     public Teacher fetchById(Integer id) {
